@@ -40,8 +40,11 @@ function initDouble(max) {
 }
 
 
-function initAddition( a , b) {
+function initAddition(a ,b ) {
     
+    a = getRandomInt(20) + 10;
+    b = getRandomInt(20) + 10;
+
     $("#a1").text(a);
     $("#a2").text(Math.trunc(a/10));
     $("#a3").text(a%10);
@@ -52,4 +55,5 @@ function initAddition( a , b) {
     $("#dizaine").val("");
     $("#unite").val("");
     
+    return [a , b];
 }

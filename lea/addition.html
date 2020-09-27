@@ -18,50 +18,52 @@
 </head> 
 <body>
 
-<script >
+<script>
 
-var licorne = 0;
-var loup = 0;
+var licorne = 5;
+var loup = 5;
+var a = -1;
+var b = -1;
 
 $(document).ready(function(){
 
+    res = initAddition(a, b);
+    a = res[0];
+    b = res[1];
+
+    $("#succes").fadeOut();
+    $("#rate").fadeOut();
+    $("#victoire").fadeOut();
+    $("#echec").fadeOut();
 
 
-$("#succes").fadeOut();
-$("#rate").fadeOut();
-$("#victoire").fadeOut();
-$("#echec").fadeOut();
-
-a = getRandomInt(20) + 10;
-b = getRandomInt(20) + 10;
-initAddition( a, b);
-
-
-$("#addition-btn").click(function(){
     
-    lesDizaines = $("#dizaine").val();
-    lesUnites = $("#unite").val();
-    laRetenue = $("#retenue").val();
 
-    //console.log( lesDizaines + " " + lesUnites + " " +laRetenue);
-    //console.log( a%10 + " " + b%10 + " "+  Math.trunc( (a%10 + b%10 ) /10  ));
+    $("#addition-btn").click(function(){
+        
+        lesDizaines = $("#dizaine").val();
+        lesUnites = $("#unite").val();
+        laRetenue = $("#retenue").val();
 
-    if( "" + lesDizaines + "" + lesUnites == "" + (a+b) && laRetenue ==   Math.trunc( (a%10 + b%10 ) /10  ) ){
-        licorne = augmenteProgression( "licorne" , licorne , 5 , "victoire");
-        $("#succes").fadeIn(1000);
-        $("#succes").fadeOut(5000);
-    } else {
-        loup = augmenteProgression( "loup" , loup , 10 , "echec");
-        $("#resultat").text("L'addition de " + a + " + " + b + " est égale à " + (a+b));
-        $("#rate").fadeIn(1000);
-        $("#rate").fadeOut(5000);
-    }
-    
-    a = getRandomInt(20) + 10;
-    b = getRandomInt(20) + 10;
-    initAddition( a, b);
-});
+        //console.log( lesDizaines + " " + lesUnites + " " +laRetenue);
+        //console.log( a%10 + " " + b%10 + " "+  Math.trunc( (a%10 + b%10 ) /10  ));
 
+        if( "" + lesDizaines + "" + lesUnites == "" + (a+b) && laRetenue ==   Math.trunc( (a%10 + b%10 ) /10  ) ){
+            licorne = augmenteProgression( "licorne" , licorne , 10 , "victoire");
+            $("#succes").fadeIn(1000);
+            $("#succes").fadeOut(5000);
+        } else {
+            loup = augmenteProgression( "loup" , loup , 20 , "echec");
+            $("#resultat").text("L'addition de " + a + " + " + b + " est égale à " + (a+b));
+            $("#rate").fadeIn(1000);
+            $("#rate").fadeOut(10000);
+        }
+        
+
+        res = initAddition(a, b);
+        a = res[0];
+        b = res[1];
+    });
 
 
 });
@@ -156,40 +158,34 @@ $("#addition-btn").click(function(){
 
     <div class="container p-3 my-3 border ">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-2 text-left">
                 <img src="https://dejpknyizje2n.cloudfront.net/marketplace/products/flat-design-unicorn-sticker-1539194391.8053632.png" height="100" width="100">
             </div>
-            <div class="col-sm-10 ">
+            <div class="col-sm-8 ">
                 <div class="progress" >
-                    <div class="progress-bar bg-success" style="width:0%" id="licorne"></div>
+                    <div class="progress-bar bg-success" style="width:1%" id="licorne"></div>
+                </div>
+                <br>
+                <div class="progress justify-content-end" >
+                    <div class="progress-bar bg-danger" style="width:1%" id="loup"></div>
                 </div>
                 <span  class="container p-3 my-3 align=middle ">
                     <div  id="succes" class="alert alert-success">
                         <strong>Bravo !</strong> Tu as trouvé. 
                     </div>
                 </span >
-            </div>
-        </div>
-    </div>
-    <div class="container p-3 my-3 border ">   
-        <div class="row">
-            <div class="col-sm-2">
-                <img src=" https://media.istockphoto.com/vectors/wolf-face-flat-icon-design-vector-illustration-vector-id1141239597?k=6&m=1141239597&s=170667a&w=0&h=Nvc_KhMQ6gVpROGHJhZQjQhGRxF0lbPqBt5ZV3l61UY=" height="100" width="100">
-            </div>
-            <div class="col-sm-10 ">
-                <div class="progress" >
-                    <div class="progress-bar bg-danger" style="width:0%" id="loup"></div>
-                </div>
                 <span  class="container p-3 my-3 align=middle ">
                     <div id="rate" class="alert alert-danger ">
                         <strong>Oh Non !</strong> Tu n'as pas trouvé. <h4 id="resultat"></h4>
                     </div>
-                </span >
+                </span >                
+            </div>
+            <div class="col-sm-2 text-right">
+                <img src=" https://media.istockphoto.com/vectors/wolf-face-flat-icon-design-vector-illustration-vector-id1141239597?k=6&m=1141239597&s=170667a&w=0&h=Nvc_KhMQ6gVpROGHJhZQjQhGRxF0lbPqBt5ZV3l61UY=" height="100" width="100">
             </div>
         </div>
-
-       
     </div>
+ 
 
     <div class="container p-3 my-3 border" id="victoire">
         <div  id="succes" class="alert alert-success">
