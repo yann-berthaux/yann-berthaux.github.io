@@ -38,3 +38,18 @@ function initDouble(max) {
     $("#double3").val("");
     $("#double4").text(double);
 }
+
+
+function initAddition( a , b) {
+    
+    $("#a1").text(a);
+    $("#a2").text(Math.trunc(a/10));
+    $("#a3").text(a%10);
+    $("#b1").text(b);
+    $("#b2").text(Math.trunc(b/10));
+    $("#b3").text(b%10);    
+    $("#retenue").val("");
+    $("#dizaine").val("");
+    $("#unite").val("");
+    
+}

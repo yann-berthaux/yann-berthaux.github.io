@@ -1,0 +1,206 @@
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Calcul addition !</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+
+    <script src="ut.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head> 
+<body>
+
+<script >
+
+var licorne = 0;
+var loup = 0;
+
+$(document).ready(function(){
+
+
+
+$("#succes").fadeOut();
+$("#rate").fadeOut();
+$("#victoire").fadeOut();
+$("#echec").fadeOut();
+
+a = getRandomInt(20) + 10;
+b = getRandomInt(20) + 10;
+initAddition( a, b);
+
+
+$("#addition-btn").click(function(){
+    
+    lesDizaines = $("#dizaine").val();
+    lesUnites = $("#unite").val();
+    laRetenue = $("#retenue").val();
+
+    //console.log( lesDizaines + " " + lesUnites + " " +laRetenue);
+    //console.log( a%10 + " " + b%10 + " "+  Math.trunc( (a%10 + b%10 ) /10  ));
+
+    if( "" + lesDizaines + "" + lesUnites == "" + (a+b) && laRetenue ==   Math.trunc( (a%10 + b%10 ) /10  ) ){
+        licorne = augmenteProgression( "licorne" , licorne , 5 , "victoire");
+        $("#succes").fadeIn(1000);
+        $("#succes").fadeOut(5000);
+    } else {
+        loup = augmenteProgression( "loup" , loup , 10 , "echec");
+        $("#resultat").text("L'addition de " + a + " + " + b + " est égale à " + (a+b));
+        $("#rate").fadeIn(1000);
+        $("#rate").fadeOut(5000);
+    }
+    
+    a = getRandomInt(20) + 10;
+    b = getRandomInt(20) + 10;
+    initAddition( a, b);
+});
+
+
+
+});
+
+
+
+
+
+
+
+</script>   
+
+    <div class="container p-3 my-3 bg-primary text-white">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1>Calcul&nbsp;:</h1>
+                <h3>Salut, trouve le résultat de l'addition !</h3>
+            </div>
+            <div class="col-sm-2">
+                <img src="https://dejpknyizje2n.cloudfront.net/marketplace/products/flat-design-unicorn-sticker-1539194391.8053632.png" height="100" width="100">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container p-3 my-3 border " id="double-ctn">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>A toi de trouver le résultat de <b>l'addition</b> de <b id="a1">-1</b> + <b id="b1">-1</b>.</h4>
+            </div>            
+        </div>
+        <div class="row">
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-5">
+            </div>            
+            <div class="col-sm-1 text-center">
+                <input type="text" id="retenue" class="form-control" >
+            </div>
+            <div class="col-sm-1 text-center">
+               
+            </div>
+            <div class="col-sm-5">
+            </div>            
+        </div>        
+        <div class="row">
+            <div class="col-sm-5">
+            </div>            
+            <div class="col-sm-1 text-center">
+                <h3 id="a2">-1</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <h3 id="a3">-1</h3>
+            </div>
+            <div class="col-sm-5">
+            </div>            
+        </div>    
+        <div class="row">
+            <div class="col-sm-4">
+            </div> 
+            <div class="col-sm-1">
+                <h3>+</h3>
+            </div>           
+            <div class="col-sm-1 text-center border border-right-0 border-top-0 border-left-0">
+                <h3 id="b2">-1</h3>
+            </div>
+            <div class="col-sm-1 text-center border border-right-0 border-top-0 border-left-0">
+                <h3 id="b3">-1</h3>
+            </div>
+            <div class="col-sm-5">
+            </div>    
+        </div>    
+        <div class="row">
+            <div class="col-sm-5">
+            </div>            
+            <div class="col-sm-1 text-center">
+                <input type="text" id="dizaine" class="form-control text-center p-3 my-3" >
+            </div>
+            <div class="col-sm-1 text-center">
+                <input type="text" id="unite" class="form-control text-center p-3 my-3" >
+            </div>
+            
+            <div class="col-sm-3">
+            </div>            
+            <div class="col-sm-2">
+                <button type="button" id="addition-btn" class="btn btn-info">Trouvé ?</button>
+            </div> 
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 border ">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="https://dejpknyizje2n.cloudfront.net/marketplace/products/flat-design-unicorn-sticker-1539194391.8053632.png" height="100" width="100">
+            </div>
+            <div class="col-sm-10 ">
+                <div class="progress" >
+                    <div class="progress-bar bg-success" style="width:0%" id="licorne"></div>
+                </div>
+                <span  class="container p-3 my-3 align=middle ">
+                    <div  id="succes" class="alert alert-success">
+                        <strong>Bravo !</strong> Tu as trouvé. 
+                    </div>
+                </span >
+            </div>
+        </div>
+    </div>
+    <div class="container p-3 my-3 border ">   
+        <div class="row">
+            <div class="col-sm-2">
+                <img src=" https://media.istockphoto.com/vectors/wolf-face-flat-icon-design-vector-illustration-vector-id1141239597?k=6&m=1141239597&s=170667a&w=0&h=Nvc_KhMQ6gVpROGHJhZQjQhGRxF0lbPqBt5ZV3l61UY=" height="100" width="100">
+            </div>
+            <div class="col-sm-10 ">
+                <div class="progress" >
+                    <div class="progress-bar bg-danger" style="width:0%" id="loup"></div>
+                </div>
+                <span  class="container p-3 my-3 align=middle ">
+                    <div id="rate" class="alert alert-danger ">
+                        <strong>Oh Non !</strong> Tu n'as pas trouvé. <h4 id="resultat"></h4>
+                    </div>
+                </span >
+            </div>
+        </div>
+
+       
+    </div>
+
+    <div class="container p-3 my-3 border" id="victoire">
+        <div  id="succes" class="alert alert-success">
+            <h3><strong>Bravo !</strong> Tu as terminé. </h3>
+        </div>
+    </div>
+    <div class="container p-3 my-3 border" id="echec">
+        <div  id="succes" class="alert alert-danger">
+            <h3><strong>Oh Non !</strong> Tu as perdu. </h3>
+        </div>
+    </div>
+
+</body>
+</html>
