@@ -1,0 +1,219 @@
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Calcul pour Léa !</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head> 
+<body>
+
+<script >
+
+var progression = 0;
+
+$(document).ready(function(){
+
+
+
+$("#succes").hide();
+$("#rate").hide();
+$("#victoire").hide();
+
+$("#moitie-ctn").hide();
+
+
+$("#moitiebtn").click(function(){
+    
+    valeur =  $("#moitie1").text();
+    moitie = valeur/2;
+
+    if( moitie == $("#moitie2").val()  && $("#moitie2").val() === $("#moitie3").val() ) {
+        augmenteProgression();
+        $("#succes").fadeIn(1000);
+        $("#succes").fadeOut(5000);
+        $("#moitie-ctn").hide();
+        $("#double-ctn").fadeIn(1000);
+    } else {
+        $("#resultat").text("La moitié de " + valeur + " est " + moitie );
+        $("#rate").fadeIn(1000);
+        $("#rate").fadeOut(5000);
+    }
+    initMoitie();
+});
+
+
+
+$("#doublebtn").click(function(){
+    
+    valeur =  $("#double1").text();
+    double = valeur*2;
+
+    if( double == $("#double3").val()   ) {
+        augmenteProgression();
+        $("#succes").fadeIn(1000);
+        $("#succes").fadeOut(5000);
+        $("#moitie-ctn").fadeIn(1000);
+        $("#double-ctn").hide();    
+        
+    } else {
+        $("#resultat").text("Le double de " + valeur + " est " + double );
+        $("#rate").fadeIn(1000);
+        $("#rate").fadeOut(5000);
+    }
+    initDouble();
+});
+  
+
+  
+
+initMoitie();
+initDouble();
+
+
+});
+
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max)) + 1;
+}
+
+function initMoitie() {
+    moitie=  getRandomInt(10) * 2;
+    $("#moitie1").text(moitie);
+    $("#moitie4").text(moitie);
+    $("#moitie2").val("");
+    $("#moitie3").val("");
+}
+
+function initDouble() {
+    double=  getRandomInt(20);
+    $("#double1").text(double);
+    $("#double2").text(double);
+    $("#double3").val("");
+    $("#double4").text(double);
+}
+
+function augmenteProgression()  {
+
+    progression = progression + 5 ;
+    width = progression +"%";
+
+    $("#progression").width()
+    $("#progression").animate({
+        width: width
+    }, 1000);
+ 
+
+    if (progression >= 100 ) {
+        
+        $("#victoire").fadeIn(1000);
+    }
+}
+
+</script>   
+
+    <div class="container p-3 my-3 bg-primary text-white">
+        <div class="row">
+            <div class="col-sm-10">
+                <h1>Calcul&nbsp;:</h1>
+                <h3>Salut <b>Léa</b>, trouve les moitiés et les doubles !</h3>
+            </div>
+            <div class="col-sm-2">
+                <img src="https://dejpknyizje2n.cloudfront.net/marketplace/products/flat-design-unicorn-sticker-1539194391.8053632.png" height="100" width="100">
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 border " id="moitie-ctn">
+        <div class="row">
+            <div class="col-sm-5">
+                <h4>A toi de trouver la <b>moitié</b> de <b id="moitie4">-1</b>.</h4>
+            </div>            
+            <div class="col-sm-1 text-center">
+                <h3 id="moitie1">-1</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <h3>=</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <input type="text" id="moitie2" class="form-control" >
+            </div>
+            <div class="col-sm-1 text-center">
+                <h3>+</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <input type="text" id="moitie3" class="form-control" >
+            </div>
+            <div class="col-sm-2 text-center">
+                <button type="button" id="moitiebtn" class="btn btn-info">Trouvé ?</button>
+            </div>
+ 
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 border " id="double-ctn">
+        <div class="row">
+            <div class="col-sm-5">
+                <h4>A toi de trouver le <b>double</b> de <b id="double4">-1</b>.</h4>
+            </div>            
+            <div class="col-sm-1 text-center">
+                <h3 id="double1">-1</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <h3>+</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <h3 id="double2">-1</h3>
+            </div>
+            <div class="col-sm-1 text-center">
+                <h3>=</h3>
+            </div>            
+            <div class="col-sm-1 text-center">
+                <input type="text" id="double3" class="form-control" >
+            </div>
+            <div class="col-sm-2 text-center">
+                <button type="button" id="doublebtn" class="btn btn-info">Trouvé ?</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 border ">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="https://dejpknyizje2n.cloudfront.net/marketplace/products/flat-design-unicorn-sticker-1539194391.8053632.png" height="100" width="100">
+            </div>
+            <div class="col-sm-10 ">
+                <div class="progress" >
+                    <div class="progress-bar bg-danger" style="width:0%" id="progression"></div>
+                </div>
+                <span  class="container p-3 my-3 align=middle ">
+                    <div  id="succes" class="alert alert-success">
+                        <strong>Bravo !</strong> Tu as trouvé. 
+                    </div>
+                    <div id="rate" class="alert alert-danger ">
+                        <strong>Oh Non !</strong> Tu n'as pas trouvé. <h4 id="resultat"></h4>
+                    </div>
+                </span >
+            </div>
+        </div>
+    </div>
+
+    <div class="container p-3 my-3 border" id="victoire">
+        <div  id="succes" class="alert alert-success">
+            <h3><strong>Bravo !</strong> Tu as terminé. </h3>
+        </div>
+    </div>
+
+
+</body>
+</html>
