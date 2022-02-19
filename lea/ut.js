@@ -40,6 +40,17 @@ function initDouble(max) {
 }
 
 
+function initMultiplication(multiplicateur_max , table_max) {
+    multiplicateur =  getRandomInt(multiplicateur_max);
+    table =  getRandomInt(table_max);
+
+    $("#multiplication1").text(multiplicateur);
+    $("#multiplication2").text(table);
+    $("#multiplication3").val("");
+   
+}
+
+
 function initAddition(a ,b ) {
     
     a = getRandomInt(20) + 10;
